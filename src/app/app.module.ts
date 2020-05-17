@@ -8,7 +8,9 @@ import { CurrentTrainingComponent } from './training/current-training/current-tr
 import { NewTrainingComponent } from './training/new-training/new-training.component';
 import { PastTrainingComponent } from './training/past-training/past-training.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { FormsModule } from '@angular/forms';
+import { StopTrainingComponent } from './training/current-training/stop-training/stop-training.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +32,13 @@ import { HeaderComponent } from './navigation/header/header.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+
 
 
 
@@ -52,19 +61,22 @@ import {MatSelectModule} from '@angular/material/select';
     PastTrainingComponent,
     WelcomeComponent,
     SideNavListComponent,
-    HeaderComponent
+    HeaderComponent,
+    StopTrainingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
     MatButtonModule,
     MatSliderModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    FormsModule,
     MatDatepickerModule ,
     MatNativeDateModule,
     MatCheckboxModule,
@@ -73,7 +85,12 @@ import {MatSelectModule} from '@angular/material/select';
     MatListModule,
     MatTabsModule ,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
     
   ],
   providers: [],

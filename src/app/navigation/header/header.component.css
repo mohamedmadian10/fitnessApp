@@ -12,4 +12,7 @@ a:active{
     padding: 0;
     margin: 0;
 }
+.logout_item{
+    cursor: pointer;
+}
 
