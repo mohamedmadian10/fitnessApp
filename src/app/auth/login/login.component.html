@@ -38,7 +38,7 @@
         >Has to be at least 6 characters</mat-error
       >
     </mat-form-field>
-    <button
+    <button *ngIf="!isLoading"
       [disabled]="loginForm.invalid"
       type="submit"
       mat-raised-button
@@ -46,5 +46,6 @@
     >
       Submit
     </button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>

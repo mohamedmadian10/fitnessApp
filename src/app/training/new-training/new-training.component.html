@@ -1,20 +1,46 @@
 <section class="new_training_container" fxLayout="row" fxLayoutAlign="center ">
   <form #f="ngForm" (ngSubmit)="onStartTraining(f)">
-    <mat-card fxFlex.xs="100%" fxFlex="400px" >
-      <mat-card-title fxLayoutAlign="center">Let's start training!</mat-card-title> 
-      <mat-card-content fxLayoutAlign="center" >
-        <mat-form-field>
-          <mat-select placeholder="Select Exercise" ngModel name="exercise" required>
-            <mat-option *ngFor="let exercise of availableExersise" [value]="exercise.id">{{exercise.name}}</mat-option>
-            <!-- <mat-option value="women">women</mat-option> -->
+    <mat-card fxFlex.xs="100%" fxFlex="400px">
+      <mat-card-title fxLayoutAlign="center"
+        >Let's start training!</mat-card-title
+      >
+      <mat-card-content fxLayoutAlign="center">
+        <mat-form-field *ngIf="!isLoading && availableExersise">
+          <mat-select
+            placeholder="Select Exercise"
+            ngModel
+            name="exercise"
+            required
+          >
+            <mat-option
+              *ngFor="let exercise of availableExersise"
+              [value]="exercise.id"
+              >{{ exercise.name }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions fxLayoutAlign="center">
-        <button [disabled]="f.invalid" mat-raised-button color="primary">Start</button>
+      <mat-card-actions fxLayoutAlign="center" *ngIf="!isLoading">
+        <button
+          *ngIf="availableExersise"
+          [disabled]="f.invalid"
+          mat-raised-button
+          color="primary"
+        >
+          Start
+        </button>
+        <button
+          type="button"
+          *ngIf="!availableExersise"
+          mat-raised-button
+          (click)="fetchExercises()"
+        >
+          Fetch again
+        </button>
       </mat-card-actions>
+
       <mat-card-footer></mat-card-footer>
     </mat-card>
   </form>
-
 </section>
