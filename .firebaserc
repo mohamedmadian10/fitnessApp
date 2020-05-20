@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularrecap": {
+      "hosting": {
+        "fitness-App": [
+          "angularrecap"
+        ]
+      }
+    }
+  }
+}
