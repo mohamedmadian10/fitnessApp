@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ExerciseService } from './exercise.service';
 import { UiService } from './ui.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class AuthService {
     private router: Router,
     private afauth: AngularFireAuth,
     private exerSer: ExerciseService,
-    private uiService: UiService
+    private uiService: UiService,
+    private db: AngularFirestore
   ) {}
   initAuthListener() {
     this.afauth.authState.subscribe((user) => {
@@ -41,6 +43,8 @@ export class AuthService {
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((user) => {
         this.uiService.loadingSpinner.next(false);
+        this.db.collection('user').doc(user.user.uid).valueChanges()
+
       })
       .catch((err) => {
         this.uiService.loadingSpinner.next(false);

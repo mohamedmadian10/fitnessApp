@@ -4,5 +4,7 @@ mat-sidenav-content,mat-sidenav-container,mat-sidenav{
 
 mat-sidenav{
     width: 300px;
+    z-index: 999;
 }
+
 
