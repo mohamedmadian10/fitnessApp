@@ -4,6 +4,7 @@ import { Subject, Subscription } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { UiService } from './ui.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +22,13 @@ export class ExerciseService {
   exerciseschanged = new Subject<Exercise[]>();
   finishedExercisesChanged = new Subject<Exercise[]>();
   exercisesSubscription: Subscription[] = [];
+  userId;
 
-  constructor(private db: AngularFirestore, private uiServ: UiService) {}
+  constructor(private db: AngularFirestore, private uiServ: UiService,private afauth:AngularFireAuth) {
+    this.afauth.authState.subscribe(user=>{
+      if(user) this.userId = user.uid;
+    })
+  }
 
   getAvailableExercises() {
     // return [...this.availableExersise];
@@ -87,9 +93,10 @@ export class ExerciseService {
   }
   getCompletedOrCancelled() {
     // return this.finishedExercices.slice();
+    if(!this.userId) return;
     this.exercisesSubscription.push(
-      this.db
-        .collection('finishedExercises')
+      
+      this.db.collection(`finishedExercises`).doc(this.userId).collection("finishedExercises")
         .valueChanges()
         //emit the values whenever we get new values from the server
         .subscribe((exercises: Exercise[]) => {
@@ -98,7 +105,8 @@ export class ExerciseService {
     );
   }
   private addDataToDbase(exercise: Exercise) {
-    this.db.collection('finishedExercises').add(exercise);
+    if(!this.userId) return;
+    this.db.collection(`finishedExercises`).doc(this.userId).collection("finishedExercises").add(exercise);
   }
   cancelSubscription() {
     this.exercisesSubscription.forEach((sub) => {

@@ -1,5 +1,33 @@
-.welcome{
-    text-align: center;
-    padding: 30px;
-    
+.welcome {
+  text-align: center;
+  padding: 30px;
 }
+.container{
+    /* background-color: rgb(197, 205, 90); */
+}
+.ngx-gallery {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.welcome h1{
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #08526d;
+
+}
+.welcome p{
+    line-height: 2;
+    width: 80%;
+    margin: 0 auto 15px;
+    font-size: 20px;
+    color: #828686;
+}
+.start{
+    margin-bottom: 20px;
+}
+/* .start button{
+    font-size: 30px;
+} */

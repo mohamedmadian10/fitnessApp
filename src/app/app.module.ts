@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 
 import { AppComponent } from './app.component';
 
@@ -38,6 +40,7 @@ import { MaterialModule } from './material.module';
     AngularFirestoreModule,
 
     FlexLayoutModule,
+    NgxGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent],
